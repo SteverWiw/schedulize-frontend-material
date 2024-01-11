@@ -1,0 +1,36 @@
+<div class="dashboard-container">
+  <!--Empieza tollbar-->
+  <mat-toolbar color="primary" class="mat-elevation-z8">
+    <div class="mat-toolbar-row">
+      <button mat-icon-button color="whithe"  (click)="sidenav.toggle()">
+        <mat-icon svgIcon="menuicon"></mat-icon>
+      </button>
+      <h1 class="app-name">S-Inventory</h1>
+    </div>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" mode="side" opened>
+      <img   src="../assets/avatar.jpeg" class="avatar mat-elevation-z10">
+      <h4 class="name">Jhonathan Ruiz</h4>
+      <p class="designation">Desarrollador de Software</p>
+      <button mat-button class="button_login">
+        <mat-icon>login</mat-icon>
+        <span>Ingresar</span>
+      </button>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+      <div>
+        <a mat-list-item routerLink="{{nav.route}}" *ngFor="let nav of menuNav">
+          <mat-icon class="icon">{{nav.icon}}</mat-icon>
+          {{nav.name}}
+        </a>
+      </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

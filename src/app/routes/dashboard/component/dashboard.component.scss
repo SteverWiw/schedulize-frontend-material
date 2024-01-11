@@ -1,0 +1,80 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-toolbar{
+  color: white;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+h1.app-name {
+  margin-left: 10px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+mat-sidenav-container {
+  position: absolute;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e4e1e1;
+}
+
+mat-sidenav{
+  width: 200px;
+  margin:  5px;
+  border-right: none;
+  color: black;
+  border-radius: 0.5%;
+  -webkit-border-radius: 0.5%;
+  -moz-border-radius: 0.5%;
+  -ms-border-radius: 0.5%;
+  -o-border-radius: 0.5%;
+  padding: 10px;
+  text-align: center;
+}
+
+.avatar{
+  margin-top: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.name{
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+.designation{
+  font-size: 0.7rem;
+  color: gray;
+}
+
+.button_login{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+}
+
+.content{
+  height: calc(100vh - 80px);
+  display: flex;
+  margin: 8px 8px 8px 10px;
+  border-radius: 0.1%;
+  -webkit-border-radius: 0.1%;
+  -moz-border-radius: 0.1%;
+  -ms-border-radius: 0.1%;
+  -o-border-radius: 0.1%;
+}

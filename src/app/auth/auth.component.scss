@@ -26,16 +26,3 @@ mat-card-content {
   display: flex;
   justify-content: flex-end;
 }
-$success-bg: #d4edda; // Color de fondo para el tipo de éxito
-$success-border: #c3e6cb; // Color del borde
-$success-text: #155724; // Color del texto
-
-.success-alert {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  width: 100%;
-  margin-bottom: 10px; /* Ajusta según sea necesario para evitar que se solape con el formulario */
-}

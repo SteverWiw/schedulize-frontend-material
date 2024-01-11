@@ -5,23 +5,20 @@
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <p>
           <mat-form-field>
-            <input
-              type="text"
-              matInput
-              placeholder="Usuario"
-              formControlName="username"
-            />
+            <input type="text" matInput placeholder="Usuario" formControlName="username" />
+            @if (validUserControl.hasError('required')) {
+            <mat-error>Usuario es <strong>requerido</strong></mat-error>
+            }
           </mat-form-field>
         </p>
 
+
         <p>
           <mat-form-field>
-            <input
-              type="password"
-              matInput
-              placeholder="Contraseña"
-              formControlName="password"
-            />
+            <input type="password" matInput placeholder="Contraseña" formControlName="password" />
+            @if (validPassControl.hasError('required')) {
+            <mat-error>Contraseña es <strong>requerida</strong></mat-error>
+            }
           </mat-form-field>
         </p>
 
@@ -30,7 +27,7 @@
         </p>
 
         <div class="button">
-          <button type="submit" mat-button color="primary">Login</button>
+          <button type="submit"  mat-button color="primary" (click)="login()">Login</button>
         </div>
       </form>
     </mat-card-content>

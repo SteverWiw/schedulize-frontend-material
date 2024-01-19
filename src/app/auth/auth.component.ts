@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(control?.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
 
@@ -50,8 +50,8 @@ export class AuthComponent {
 
       if (usernameControl && passwordControl) {
         const authrequest: Authrequest = {
-          userName: usernameControl.value || '',
-          password: passwordControl.value || ''
+          userName: usernameControl.value ?? '',
+          password: passwordControl.value ?? ''
         };
 
       this.authService.login(authrequest).subscribe({
@@ -88,7 +88,7 @@ export class AuthComponent {
   @Output() submitEM = new EventEmitter();
 
 
-  validUserControl = new FormControl('', [Validators.required]);
+  validUserControl = new FormControl('', [Validators.required, Validators.nullValidator]);
   validPassControl = new FormControl('', [Validators.required, Validators.nullValidator]);
   matcher = new MyErrorStateMatcher();
 }

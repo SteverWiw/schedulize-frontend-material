@@ -4,14 +4,13 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class TokenService {
-  private readonly TOKEN_KEY = 'token';
+  private readonly TOKEN_KEY!:string;
 
   getToken(): string | null {
     return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
   setToken(token: string): void {
-    console.log("datos token "+token);
     sessionStorage.setItem(this.TOKEN_KEY, token);
   }
 
@@ -25,12 +24,8 @@ export class TokenService {
       return true;
     }
 
-    const decodedToken = this.decodeToken(token);
-    if (!decodedToken || !decodedToken.exp) {
-      return true;
-    }
-
-    return Date.now() >= decodedToken.exp * 1000;
+  const expirationDate = this.getExpirationDate();
+    return expirationDate !== null && new Date() > expirationDate ;
   }
 
   getExpirationDate(): Date | null {
@@ -40,7 +35,7 @@ export class TokenService {
     }
 
     const decodedToken = this.decodeToken(token);
-    if (!decodedToken || !decodedToken.exp) {
+    if (!(decodedToken || decodedToken.exp)) {
       return null;
     }
 
@@ -64,4 +59,6 @@ export class TokenService {
       return null;
     }
   }
+
+
 }

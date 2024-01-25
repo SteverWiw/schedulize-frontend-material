@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 import {MaterialModule} from "../../../../material.module";
 import {NgForOf} from "@angular/common";
 import {RouterLink} from "@angular/router";

@@ -5,8 +5,9 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {HttpClientModule} from "@angular/common/http";
 import {MaterialModule} from "../../../material.module";
 import {MatIconRegistry} from "@angular/material/icon";
-import {RouterLink, RouterOutlet} from "@angular/router";
+import { RouterLink, RouterOutlet} from "@angular/router";
 import {CommonModule} from "@angular/common";
+import { TokenService } from "../../../services/auth-service/TokenService";
 
 @Component({
   selector: 'app-dashboard',
@@ -32,8 +33,7 @@ export class DashboardComponent implements OnInit{
   private domSanitizer= inject(DomSanitizer);
   private observer = inject(BreakpointObserver);
   private changeDetector = inject(ChangeDetectorRef);
-
-
+  private tokenService = inject(TokenService);
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
@@ -43,8 +43,6 @@ export class DashboardComponent implements OnInit{
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/menuicon.svg")
     );
   }
-
-  ngOnInit(): void {}
 
   ngAfterViewInit() {
 
@@ -58,5 +56,10 @@ export class DashboardComponent implements OnInit{
       }
     })
     this.changeDetector.detectChanges();
+  }
+
+  ngOnInit(): void {
+    // TODO document why this method 'ngOnInit' is empty
+
   }
 }

@@ -1,22 +1,23 @@
-import {CanActivateFn, CanMatchFn, Route, Router, UrlSegment} from '@angular/router';
-import {inject} from "@angular/core";
-import {AuthService} from "../services/auth-service/auth.service";
-import {state} from "@angular/animations";
+import { CanActivateFn, CanMatchFn, Route, Router, UrlSegment } from '@angular/router';
+import { inject } from "@angular/core";
+import { TokenService } from '../services/auth-service/TokenService';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService);
+  const tokenService = inject(TokenService);
   const router = inject(Router);
-  if (authService.isAuth()){
+  if (!tokenService.isTokenExpired() && tokenService.getToken() !== null) {
     return true;
   }
-  router.navigateByUrl("home");
-  return authService.isAuth();
+
+  router.navigateByUrl("/home");
+  return false;
 };
+
 /**
- * este sirve para buscar una url que machee con la que se esta intentando acceder
+ * Este sirve para buscar una URL que coincida con la que se está intentando acceder.
  * @param route
  * @param segments
  */
-export const authGuardMatch: CanMatchFn = (route:Route,segments:UrlSegment[]) =>{
+export const authGuardMatch: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
   return true;
-}
+};

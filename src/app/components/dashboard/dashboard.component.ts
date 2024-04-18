@@ -3,11 +3,11 @@ import {ChangeDetectorRef, Component, inject, OnInit, ViewChild} from "@angular/
 import {DomSanitizer} from "@angular/platform-browser";
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {HttpClientModule} from "@angular/common/http";
-import {MaterialModule} from "../../../material.module";
+import {MaterialModule} from "../../material.module";
 import {MatIconRegistry} from "@angular/material/icon";
 import { RouterLink, RouterOutlet} from "@angular/router";
 import {CommonModule} from "@angular/common";
-import { TokenService } from "../../../services/auth-service/TokenService";
+import { TokenService } from "../../services/Token.service";
 
 @Component({
   selector: 'app-dashboard',

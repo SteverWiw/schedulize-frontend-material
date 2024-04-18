@@ -1,15 +1,15 @@
 import { Input, Component, Output, EventEmitter, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { MaterialModule } from "../material.module";
+import { MaterialModule } from "../../material.module";
 import { NgIf } from "@angular/common";
 import { ErrorStateMatcher } from '@angular/material/core';
-import { AuthService } from '../services/auth-service/auth.service';
-import { Authrequest } from "../services/auth-service/authrequest";
-import { DashboardComponent } from "../routes/dashboard/component/dashboard.component";
+import { AuthService } from '../../services/auth.service';
+import { Authrequest } from "../../interfaces/auth/authrequest";
+import { DashboardComponent } from "../dashboard/dashboard.component";
 import { Router } from "@angular/router";
-import { SnackbarService } from '../services/alerts/snackbar.service';
-import { ApiResponse } from '../interfaces/genericresponse';
-import { TokenService } from '../services/auth-service/TokenService';
+import { SnackbarService } from '../../services/snackbar.service';
+import { ApiResponse } from '../../interfaces/genericresponse';
+import { TokenService } from '../../services/Token.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -47,6 +47,7 @@ export class AuthComponent {
 
 
   login() {
+   
     if (!this.loginForm.valid) {
       this.loginForm.markAsTouched();
       return;

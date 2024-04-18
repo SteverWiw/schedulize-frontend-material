@@ -1,12 +1,13 @@
 import { inject, Injectable } from '@angular/core';
-import { Authrequest } from './authrequest';
+import { Authrequest } from '../interfaces/auth/authrequest';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
-import { ApiResponse } from '../../interfaces/genericresponse';
-import { TokenService } from './TokenService';
+import { environment } from '../environments/environment';
+import { ApiResponse } from '../interfaces/genericresponse';
+import { TokenService } from './Token.service';
 
-const base_url = environment.base_url_login;
+const base_url = environment.base_url;
+const base_login = environment.base_url_login;
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
 
-    const path = `${base_url}/login`;
+    const path = `${base_url+base_login}/login`;
 
     return this.http.post<ApiResponse>(path, body, { headers: headers });
   }

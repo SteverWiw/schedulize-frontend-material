@@ -1,0 +1,95 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #0D47A1, #000000);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; // Alinea el contenido a la derecha
+}
+
+.content {
+  display: flex;
+}
+
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 80%; // Utilizamos un porcentaje para dejar espacio para el contenido adicional
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    fieldset {
+      border: none;
+
+      legend {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+    }
+
+    .form-field {
+      margin-bottom: 20px;
+      position: relative; // Agregamos posición relativa para manejar el ancho del input dentro de su contenedor
+
+      label {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: calc(100% - 20px); // Restamos el padding del ancho total del input
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      .error {
+        font-size: 14px;
+        color: red;
+        margin-top: 5px;
+      }
+    }
+
+    .error {
+      font-size: 16px;
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      text-align: center;
+
+      button {
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: #1565c0; // Cambia el color de fondo del botón a un tono más oscuro
+        color: white; // Cambia el color del texto a blanco para que destaque
+        border: none; // Quita el borde del botón para un aspecto más limpio
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Añade una sombra al botón para resaltarlo
+        transition: background-color 0.3s ease; // Agrega una transición suave al cambiar el color de fondo
+      }
+
+      button:hover {
+        background-color: #0d47a1; // Cambia el color de fondo del botón al pasar el ratón sobre él para resaltarlo aún más
+      }
+    }
+
+  }
+}

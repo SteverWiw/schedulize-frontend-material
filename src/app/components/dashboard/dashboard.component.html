@@ -1,32 +1,41 @@
 <div class="dashboard-container">
-  <!--Empieza tollbar-->
+  <!-- Toolbar -->
   <mat-toolbar color="primary" class="mat-elevation-z8">
     <div class="mat-toolbar-row">
-      <button mat-icon-button color="whithe"  (click)="sidenav.toggle()">
+      <button mat-icon-button color="whithe" (click)="sidenav.toggle()">
         <mat-icon svgIcon="menuicon"></mat-icon>
       </button>
       <h1 class="app-name">S-Inventory</h1>
     </div>
   </mat-toolbar>
+  <!-- Sidenav -->
   <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" mode="side" opened>
-      <img   src="../assets/avatar.jpeg" class="avatar mat-elevation-z10">
+      <!-- User Info -->
+      <img src="../assets/avatar.jpeg" class="avatar mat-elevation-z10">
       <h4 class="name">Jhonathan Ruiz</h4>
       <p class="designation">Desarrollador de Software</p>
+      <!-- Login Button -->
       <button mat-button class="button_login">
         <mat-icon>login</mat-icon>
         <span>Ingresar</span>
       </button>
       <mat-divider></mat-divider>
-      <mat-nav-list>
-      <div>
-        <a mat-list-item routerLink="{{nav.route}}" *ngFor="let nav of menuNav">
-          <mat-icon class="icon">{{nav.icon}}</mat-icon>
-          {{nav.name}}
-        </a>
-      </div>
-      </mat-nav-list>
+      <!-- Menu -->
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let parent of menuNav">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ parent.menuparent}}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a mat-list-item routerLink="{{ child.viewRoute }}" *ngFor="let child of parent.children">
+              {{ child.menuName }}
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-sidenav>
+    <!-- Main Content -->
     <mat-sidenav-content>
       <div class="content mat-elevation-z8">
         <router-outlet></router-outlet>

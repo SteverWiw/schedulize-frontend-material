@@ -4,13 +4,12 @@ import { MaterialModule } from "../../material.module";
 import { NgIf } from "@angular/common";
 import { ErrorStateMatcher } from '@angular/material/core';
 import { AuthService } from '../../services/auth.service';
-import { Authrequest } from "../../interfaces/auth/authrequest";
+import { Authrequest } from "../../interfaces/auth/authinterface";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { Router } from "@angular/router";
-import { SnackbarService } from '../../services/snackbar.service';
 import { ApiResponse } from '../../interfaces/genericresponse';
 import { TokenService } from '../../services/Token.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { CustomErrors } from '../../utils/CustomErrors';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -36,8 +35,9 @@ export class AuthComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  private snackBar = inject(SnackbarService);
   private tokenService = inject(TokenService);
+
+  customErrorsInstance = new CustomErrors<string>();
 
   public message!: string;
   loginForm = this.formBuilder.group({
@@ -47,7 +47,7 @@ export class AuthComponent {
 
 
   login() {
-   
+
     if (!this.loginForm.valid) {
       this.loginForm.markAsTouched();
       return;
@@ -66,53 +66,27 @@ export class AuthComponent {
     };
 
     this.authService.login(authrequest).subscribe({
-      next: (response: ApiResponse) => this.handleLoginResponse(response),
-      error: (e) => this.handleLoginError(e),
-      complete: () => {this.redirect();}
+      next: (response: ApiResponse<string>) => {
+        if (response.objectList) {
+          this.customErrorsInstance.handleResponse(response)
+          const token: string = JSON.stringify(response.objectList[0]);
+          const match = token.match(/{"token":"(.*?)"/); // Realizar la coincidencia con la expresión regular
+
+          if (match && match[1]) {
+            const token = match[1]; // El grupo de captura (.*?) contiene el valor del token
+            console.log(token);
+            this.tokenService.setToken(token);
+          } else {
+            console.log('No se encontró un token en la cadena.');
+          }          
+        }
+      },
+      error: (e) => this.customErrorsInstance.handleError(e),
+      complete: () => {
+        this.redirect();
+      }
     });
   }
-
-  private handleLoginResponse(response: ApiResponse): void {
-    const code = parseFloat(response.metaData[0]?.code || '0');
-    if (this.isValidResponse(response, code)) {
-      this.handleSuccessfulLogin(response);
-    } else {
-      this.handleUnsuccessfulLogin(response);
-    }
-  }
-
-  private isValidResponse(response: ApiResponse, code: number): boolean {
-    return response.metaData && response.metaData.length > 0 && !isNaN(code) && code >= 20 && code <= 29;
-  }
-
-  private handleSuccessfulLogin(response: ApiResponse): void {
-    if (response.objectList) {
-      this.tokenService.setToken(response.objectList[0].token);
-      const userData = this.tokenService.getUserData();
-      this.message = `Bienvenido ${userData.FIRST_NAME} ${userData.SECOND_NAME} ${userData.FIRST_SURNAME} ${userData.SECOND_SURNAME}`;
-      this.snackBar.openSuccess(this.message);
-    }
-  }
-
-  private handleUnsuccessfulLogin(response: ApiResponse): void {
-    this.snackBar.openInfo(response.metaData[0]?.type || 'Error desconocido');
-  }
-
-  private handleLoginError(error: any): void {
-    if (error instanceof HttpErrorResponse && error.error) {
-      const apiResponse = error.error as ApiResponse;
-
-      if (apiResponse.metaData && apiResponse.metaData.length > 0) {
-        const customErrorMessage = apiResponse.metaData[0]?.type || 'Error desconocido';
-        this.snackBar.openError(customErrorMessage);
-        return;
-      }
-    }
-
-    // Si no es un error de ApiResponse esperado, muestra el mensaje de error HTTP predeterminado
-    this.snackBar.openError(error.message || 'Error desconocido');
-  }
-
 
   redirect() {
     this.router.navigate(["/dashboard"]);

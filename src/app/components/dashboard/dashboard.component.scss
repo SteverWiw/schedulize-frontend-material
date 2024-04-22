@@ -3,7 +3,7 @@
   flex-direction: column;
 }
 
-mat-toolbar{
+mat-toolbar {
   color: white;
   position: fixed;
   z-index: 2;
@@ -25,9 +25,9 @@ mat-sidenav-container {
   background: #e4e1e1;
 }
 
-mat-sidenav{
-  width: 200px;
-  margin:  5px;
+mat-sidenav {
+  width: 310px; // Cambia el ancho según tus necesidades
+  margin: 5px;
   border-right: none;
   color: black;
   border-radius: 0.5%;
@@ -39,7 +39,7 @@ mat-sidenav{
   text-align: center;
 }
 
-.avatar{
+.avatar {
   margin-top: 10px;
   width: 100px;
   height: 100px;
@@ -50,17 +50,17 @@ mat-sidenav{
   -o-border-radius: 50%;
 }
 
-.name{
+.name {
   margin-top: 5px;
   font-weight: normal;
 }
 
-.designation{
+.designation {
   font-size: 0.7rem;
   color: gray;
 }
 
-.button_login{
+.button_login {
   width: 100%;
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ mat-sidenav{
   font-size: 1rem;
 }
 
-.content{
+.content {
   height: calc(100vh - 80px);
   display: flex;
   margin: 8px 8px 8px 10px;
@@ -77,4 +77,35 @@ mat-sidenav{
   -moz-border-radius: 0.1%;
   -ms-border-radius: 0.1%;
   -o-border-radius: 0.1%;
+}
+
+.mat-nav-list {
+  text-align: left; // Alinea los elementos a la izquierda
+
+  a.mat-list-item {
+    display: flex;
+    align-items: center;
+    padding-left: 20px; // Espacio para iconos
+
+    // Ajusta el icono
+    mat-icon {
+      margin-right: 10px; // Espacio entre el icono y el texto
+    }
+  }
+}
+
+.mat-nav-list a.mat-list-item {
+  display: flex;
+  align-items: inherit;
+  padding-left: 2px;
+
+  font-size: 14px;
+
+  mat-icon {
+    margin-right: 5px;
+  }
+}
+
+.mat-expansion-panel-header .mat-expansion-indicator {
+  display: none !important; // Oculta el indicador de expansión
 }

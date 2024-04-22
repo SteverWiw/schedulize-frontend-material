@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Authrequest } from '../interfaces/auth/authrequest';
+import { Authrequest } from '../interfaces/auth/authinterface';
 import { HttpClient,  HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -15,7 +15,7 @@ const base_login = environment.base_url_login;
 export class AuthService {
   private http = inject(HttpClient); 
   private tokenService = inject(TokenService); 
-  login(authrequest: Authrequest): Observable<ApiResponse> {
+  login(authrequest: Authrequest): Observable<ApiResponse<string>> {
     const body = {
       userName: authrequest.userName,
       password: authrequest.password,
@@ -25,9 +25,9 @@ export class AuthService {
       'Content-Type': 'application/json',
     });
 
-    const path = `${base_url+base_login}/login`;
+    const path = `${base_url+base_login}`;
 
-    return this.http.post<ApiResponse>(path, body, { headers: headers });
+    return this.http.post<ApiResponse<string>>(path, body, { headers: headers });
   }
 
   isAuth(): boolean {

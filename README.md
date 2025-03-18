@@ -1,27 +1,78 @@
-# FrontendInventory
+Frontend Inventory - Plataforma de Gestión de Inventarios y Kardex
+Este es el frontend de una plataforma para la gestión de inventarios y registro de movimientos Kardex. 
+Construido con Angular 17 y Material Design, el proyecto prioriza una experiencia de usuario moderna, intuitiva y eficiente.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
+Características principales
+Diseño Responsivo: Implementación basada en principios de Material Design para garantizar una experiencia uniforme en distintos dispositivos.
 
-## Development server
+Componentes Reutilizables: Arquitectura modular con componentes reutilizables para optimizar el mantenimiento y la escalabilidad.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Consumo de API: Integración fluida con el backend para el manejo de datos mediante servicios y consumo de endpoints RESTful.
 
-## Code scaffolding
+Formulario Reactivo: Formularios dinámicos con validaciones avanzadas para mejorar la interacción con el usuario.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Scripts Personalizados:
 
-## Build
+ng serve para iniciar un servidor de desarrollo.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ng build para compilar el proyecto.
 
-## Running unit tests
+ng s --proxy-config proxy.conf.json para servir con proxy configurado.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng test para ejecutar pruebas unitarias.
 
-## Running end-to-end tests
+Tecnologías utilizadas
+Framework: Angular 17
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Diseño de Interfaz: Material Design con soporte de @angular/material.
 
-## Further help
+Librerías:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Bootstrap 5.3.2 para estilos adicionales.
+
+RxJS para gestión de flujos reactivos.
+
+Zone.js para seguimiento del ciclo de vida de Angular.
+
+Lenguaje: TypeScript
+
+Requisitos previos
+Antes de comenzar, asegúrate de tener instalados:
+
+Node.js (versión 18.x o superior)
+
+Angular CLI (versión 17.1.0 o superior)
+
+Instrucciones de instalación
+Clona el repositorio:
+
+bash
+git clone https://github.com/tu-usuario/frontend-inventory.git
+Ve al directorio del proyecto:
+
+bash
+cd frontend-inventory
+Instala las dependencias del proyecto:
+
+bash
+npm install
+Inicia el servidor de desarrollo:
+
+bash
+npm start
+Uso
+Accede al servidor local en http://localhost:4200 para probar la aplicación.
+
+Compilación: Genera una versión lista para producción con:
+
+bash
+npm run build
+Pruebas: Ejecuta las pruebas unitarias con:
+
+bash
+npm test
+Contribuciones
+¡Tus aportes son bienvenidos! Por favor, abre un issue o envía un pull request para sugerir cambios.
+
+Licencia
+Este proyecto está bajo la MIT License.
